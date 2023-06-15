@@ -1,7 +1,6 @@
 import openpyxl
 import PySimpleGUI as sg
 from datetime import datetime
-import actualizar
 
 # Lista de rutas de archivo
 rutas_archivos = [
@@ -32,8 +31,6 @@ layout = [
 # Crear la ventana
 ventana = sg.Window("RollOver", layout)
 sg.theme('Light Blue 3')
-actualizar.hay_actualizacion_disponible()
-actualizar.realizar_actualizacion()
 
 # Ejecutar el bucle de eventos de la ventana
 while True:
@@ -76,22 +73,21 @@ while True:
         siguiente_fila = hoja.max_row + 1 if hoja else 1
 
         # Verificar si las columnas ya existen en la hoja
-        if hoja:
-            if hoja['A1'].value is None:
-                # Insertar nombre de columna "Lockname"
-                hoja['A1'] = 'Lockname'
-            if hoja['B1'].value is None:
-                # Insertar nombre de columna "Meter"
-                hoja['B1'] = 'Meter'
-            if hoja['C1'].value is None:
-                # Insertar nombre de columna "Date"
-                hoja['C1'] = 'Date'
-            if hoja['D1'].value is None:
-                # Insertar nombre de columna "Time"
-                hoja['D1'] = 'Time'
-            if hoja['E1'].value is None:
-                # Insertar nombre de columna "Manager"
-                hoja['E1'] = 'Manager'
+        if hoja and hoja['A1'].value is None:
+            # Insertar nombre de columna "Lockname"
+            hoja['A1'] = 'Lockname'
+        if hoja and hoja['B1'].value is None:
+            # Insertar nombre de columna "Meter"
+            hoja['B1'] = 'Meter'
+        if hoja and hoja['C1'].value is None:
+            # Insertar nombre de columna "Date"
+            hoja['C1'] = 'Date'
+        if hoja and hoja['D1'].value is None:
+            # Insertar nombre de columna "Time"
+            hoja['D1'] = 'Time'
+        if hoja and hoja['E1'].value is None:
+            # Insertar nombre de columna "Manager"
+            hoja['E1'] = 'Manager'
 
         # Convertir tiempo_str a objeto de tiempo
         tiempo = datetime.strptime(tiempo_str, "%H:%M").time()
