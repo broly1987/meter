@@ -109,9 +109,9 @@ while True:
                 # Guardar el archivo si hay un archivo abierto
                 if workbook:
                     workbook.save(ruta_archivo)
-                    sg.popup("Datos guardados exitosamente.")
+                    sg.popup("Data saved. thanks ")
                 else:
-                    sg.popup("No hay un archivo abierto.")
+                    sg.popup("theres no files . thanks ")
 
         # Incrementar el número de fila siguiente si hay un archivo y una hoja abiertos
         if hoja:
