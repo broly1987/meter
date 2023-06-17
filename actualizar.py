@@ -14,7 +14,7 @@ def hay_actualizacion_disponible():
             return True
     except requests.exceptions.RequestException as e:
         # Manejar errores de conexión
-        print("Error al verificar la actualización:", str(e))
+        print("Error to check update :", str(e))
 
     # Si ocurre algún error o la respuesta no es exitosa, se considera que no hay una actualización disponible
     return False
@@ -42,7 +42,7 @@ def realizar_actualizacion():
 
         # Puedes agregar aquí cualquier otra acción necesaria para completar la actualización
 
-        print("Actualización realizada exitosamente.")
+        print("update sucesfull.")
     except subprocess.CalledProcessError as e:
         # Manejar errores en la ejecución de los comandos
-        print("Error al realizar la actualización:", str(e))
+        print("Error :", str(e))
