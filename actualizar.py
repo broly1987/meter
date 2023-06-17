@@ -1,48 +1,44 @@
 import requests
+import pystray
 import subprocess
 
+from PIL import Image
+
 # Función para verificar si hay una actualización disponible
+import requests
+
+
 def hay_actualizacion_disponible():
-    # URL del servidor de actualizaciones
-    url_actualizacion = "http://example.com/check_update"
+    url_actualizacion = "https://raw.githubusercontent.com/broly1987/meter/main/act.json?token=GHSAT0AAAAAACDUTGCETFSUH2GMY6JRNG2SZENJ4KA"
 
     try:
         response = requests.get(url_actualizacion)
-        # Verificar el código de respuesta HTTP
         if response.status_code == 200:
-            # Si la respuesta es exitosa, se considera que hay una actualización disponible
-            return True
+            data = response.json()
+            # Aquí puedes procesar la información del archivo JSON
+            version_actual = "1.0.0"  # Versión actual de tu aplicación
+            version_disponible = data["version"]  # Versión disponible en el archivo JSON
+
+            if version_disponible > version_actual:
+                # Hay una actualización disponible
+                return True
     except requests.exceptions.RequestException as e:
-        # Manejar errores de conexión
         print("Error al verificar la actualización:", str(e))
 
-    # Si ocurre algún error o la respuesta no es exitosa, se considera que no hay una actualización disponible
     return False
 
 
+# Función para mostrar la notificación de actualización
+def mostrar_notificacion():
+    icono = Image.open("image.jpg")  # Reemplaza "icono.png" con la ruta de tu propio ícono
+    menu = (
+        pystray.MenuItem("Actualizar", lambda: subprocess.run(["python", "actualizar.py"])),
+        pystray.MenuItem("Salir", lambda: pystray.quit()),
+    )
+    icono_notificacion = pystray.Icon("meter_roll_over", icono, "new update avaliable", menu)
+    icono_notificacion.run()
 
-
-
-# Función para realizar la actualización
-import subprocess
-
-
-# Función para realizar la actualización
-def realizar_actualizacion():
-    # Comandos para establecer la rama de seguimiento y realizar la actualización
-    comando_establecer_rama = "git branch --set-upstream-to=origin/master master"
-    comando_actualizacion = "git pull"
-
-    try:
-        # Establecer la rama de seguimiento
-        subprocess.run(comando_establecer_rama, shell=True, check=True)
-
-        # Ejecutar el comando de actualización
-        subprocess.run(comando_actualizacion, shell=True, check=True)
-
-        # Puedes agregar aquí cualquier otra acción necesaria para completar la actualización
-
-        print("Actualización realizada exitosamente.")
-    except subprocess.CalledProcessError as e:
-        # Manejar errores en la ejecución de los comandos
-        print("Error al realizar la actualización:", str(e))
+# Verificar si hay una actualización disponible
+if hay_actualizacion_disponible():
+    # Mostrar la notificación de actualización
+    mostrar_notificacion()
