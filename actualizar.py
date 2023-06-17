@@ -4,7 +4,7 @@ import subprocess
 # Función para verificar si hay una actualización disponible
 def hay_actualizacion_disponible():
     # URL del servidor de actualizaciones
-    url_actualizacion = "http://example.com/check_update"
+    url_actualizacion = "https://raw.githubusercontent.com/broly1987/meter/main/act.json?token=GHSAT0AAAAAACDUTGCETFSUH2GMY6JRNG2SZENJ4KA"
 
     try:
         response = requests.get(url_actualizacion)
