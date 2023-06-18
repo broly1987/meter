@@ -26,7 +26,9 @@ layout = [
     [sg.Text("Meter:"), sg.Combo(opciones_meters, key="-METER-", size=(19, 1))],
     [sg.Text("Time:"), sg.Input(key="-TIME-", size=(17, 1))],
     [sg.Text("Manager:"), sg.Combo(opciones_supervisor, key="-SUPERVISOR-", size=(18, 1))],
-    [sg.Button("Save")]
+    [sg.Button("Save")],
+    [sg.Button("Check for Updates")],
+    [sg.ProgressBar(100, orientation='h', size=(20, 20), key='-PROGRESS-')]
 ]
 
 # Crear la ventana
@@ -118,13 +120,21 @@ while True:
         if hoja:
             siguiente_fila += 1
 
+    elif evento == "Check for Updates":
+        progreso_barra = ventana['-PROGRESS-']
+        progreso_barra.update(0)  # Restablecer la barra de progreso al inicio
+
         if Actualizador.hay_actualizacion_disponible():
-            print("¡Hay una actualización disponible!")
+            sg.popup("¡update avaliable!")
+            progreso_barra.update(50)  # Actualizar la barra de progreso al 50%
 
             # Realizar la actualización
             Actualizador.realizar_actualizacion()
+            progreso_barra.update(100)  # Actualizar la barra de progreso al 100%
+            sg.popup("¡update succefully!")
+
         else:
-            print("No hay actualizaciones disponibles")
+            sg.popup("theres no update")
 
 # Cerrar la ventana
 ventana.close()
