@@ -120,7 +120,7 @@ while True:
         if hoja:
             siguiente_fila += 1
 
-    elif evento == "Check for Updates":
+    elif evento == "Check for Updates.....":
         progreso_barra = ventana['-PROGRESS-']
         progreso_barra.update(0)  # Restablecer la barra de progreso al inicio
 
@@ -131,10 +131,10 @@ while True:
             # Realizar la actualización
             Actualizador.realizar_actualizacion()
             progreso_barra.update(100)  # Actualizar la barra de progreso al 100%
-            sg.popup("¡update succefully!")
+            sg.popup("¡!!!!!update succefully!!!!!")
 
         else:
-            sg.popup("theres no update")
+            sg.popup("theres no update....")
 
 # Cerrar la ventana
 ventana.close()
