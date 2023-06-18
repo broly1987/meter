@@ -118,5 +118,9 @@ while True:
         if hoja:
             siguiente_fila += 1
         if Actualizador.hay_actualizacion_disponible():
+            print("¡Hay una actualización disponible!")
+        else:
+            print("No hay actualizaciones disponibles")
+
             # Realizar la actualización
-            Actualizador.realizar_actualizacion()
+        Actualizador.realizar_actualizacion()
