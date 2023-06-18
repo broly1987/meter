@@ -1,6 +1,7 @@
 import openpyxl
 import PySimpleGUI as sg
 from datetime import datetime
+from actualizar import Actualizador
 
 # Lista de rutas de archivo
 rutas_archivos = [
@@ -116,3 +117,6 @@ while True:
         # Incrementar el número de fila siguiente si hay un archivo y una hoja abiertos
         if hoja:
             siguiente_fila += 1
+        if Actualizador.hay_actualizacion_disponible():
+            # Realizar la actualización
+            Actualizador.realizar_actualizacion()
