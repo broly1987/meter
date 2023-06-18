@@ -11,7 +11,7 @@ class Actualizador:
             if response.status_code == 200:
                 return True
         except requests.exceptions.RequestException as e:
-            print("Error al verificar la actualización:", str(e))
+            print("Error cheking update:", str(e))
 
         return False
 
@@ -23,6 +23,6 @@ class Actualizador:
         try:
             subprocess.run(comando_establecer_rama, shell=True, check=True)
             subprocess.run(comando_actualizacion, shell=True, check=True)
-            print("Actualización exitosa.")
+            print("update succefull.")
         except subprocess.CalledProcessError as e:
-            print("Error durante la actualización:", str(e))
+            print("Error updating :", str(e))
