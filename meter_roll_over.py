@@ -112,29 +112,19 @@ while True:
                 # Guardar el archivo si hay un archivo abierto
                 if workbook:
                     workbook.save(ruta_archivo)
-                    sg.popup("Data saved. thanks ")
+                    sg.popup("Data saved. Thanks!")
                 else:
-                    sg.popup("theres no files . thanks ")
+                    sg.popup("There are no files. Thanks!")
 
         # Incrementar el número de fila siguiente si hay un archivo y una hoja abiertos
         if hoja:
             siguiente_fila += 1
 
-    elif evento == "Check for Updates.....":
-        progreso_barra = ventana['-PROGRESS-']
-        progreso_barra.update(0)  # Restablecer la barra de progreso al inicio
-
+    elif evento == "Check for Updates":
         if Actualizador.hay_actualizacion_disponible():
-            sg.popup("¡update avaliable!")
-            progreso_barra.update(50)  # Actualizar la barra de progreso al 50%
-
-            # Realizar la actualización
-            Actualizador.realizar_actualizacion()
-            progreso_barra.update(100)  # Actualizar la barra de progreso al 100%
-            sg.popup("¡!!!!!update succefully!!!!!")
-
+            sg.popup("....There is an update available....!")
         else:
-            sg.popup("theres no update....")
+            sg.popup("No updates available.")
 
 # Cerrar la ventana
 ventana.close()
