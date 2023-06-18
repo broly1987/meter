@@ -117,10 +117,14 @@ while True:
         # Incrementar el número de fila siguiente si hay un archivo y una hoja abiertos
         if hoja:
             siguiente_fila += 1
+
         if Actualizador.hay_actualizacion_disponible():
             print("¡Hay una actualización disponible!")
+
+            # Realizar la actualización
+            Actualizador.realizar_actualizacion()
         else:
             print("No hay actualizaciones disponibles")
 
-            # Realizar la actualización
-        Actualizador.realizar_actualizacion()
+# Cerrar la ventana
+ventana.close()
