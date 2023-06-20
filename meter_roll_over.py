@@ -32,7 +32,7 @@ layout = [
 ]
 
 # Crear la ventana
-ventana = sg.Window("RollOver", layout)
+ventana = sg.Window("meter_roll_over by Ariel Camilo", layout)
 sg.theme('Light Blue 3')
 
 # Ejecutar el bucle de eventos de la ventana
