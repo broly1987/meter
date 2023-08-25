@@ -120,11 +120,20 @@ while True:
         if hoja:
             siguiente_fila += 1
 
+    # ... Código anterior ...
+
     elif evento == "Check for Updates":
         if Actualizador.hay_actualizacion_disponible():
-            sg.popup("....There is an update available....!")
+            respuesta = sg.popup_yes_no("There is an update available. Do you want to update?")
+            if respuesta == "Yes":
+                Actualizador.realizar_actualizacion()
+                sg.popup("Update completed.")
+            else:
+                sg.popup("Update canceled.")
         else:
             sg.popup("No updates available.")
+
+    # ... Resto del código ...
 
 # Cerrar la ventana
 ventana.close()
