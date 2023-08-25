@@ -124,12 +124,14 @@ while True:
 
     elif evento == "Check for Updates....":
         if Actualizador.hay_actualizacion_disponible():
-            Actualizador.realizar_actualizacion()
-            sg.popup("Update completed.!!!")
+            respuesta = sg.popup_yes_no("There is an update available. Do you want to update?")
+            if respuesta == "Yes":
+                Actualizador.realizar_actualizacion()
+                sg.popup("Update completed.")
+            else:
+                sg.popup("Update canceled.")
         else:
             sg.popup("No updates available.")
-
-    # ... Resto del código ...
 
 # Cerrar la ventana
 ventana.close()
