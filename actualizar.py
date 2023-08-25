@@ -17,21 +17,10 @@ class Actualizador:
 
     @staticmethod
     def realizar_actualizacion():
-        comando_establecer_rama = "git branch --set-upstream-to=origin/main main"
         comando_actualizacion = "git pull"
 
         try:
-            subprocess.run(comando_establecer_rama, shell=True, check=True)
             subprocess.run(comando_actualizacion, shell=True, check=True)
             print("Update successful.")
         except subprocess.CalledProcessError as e:
-            print("Error updating:", str(e))
-
-
-# Llamar a los métodos de la clase Actualizador
-if Actualizador.hay_actualizacion_disponible():
-    respuesta = input("Hay una actualización disponible. ¿Deseas actualizar? (s/n): ")
-    if respuesta.lower() == "s":
-        Actualizador.realizar_actualizacion()
-    else:
-        print("Actualización cancelada.")
+            print("Error updating:....", str(e))

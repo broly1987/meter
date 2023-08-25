@@ -27,12 +27,12 @@ layout = [
     [sg.Text("Time:"), sg.Input(key="-TIME-", size=(17, 1))],
     [sg.Text("Manager:"), sg.Combo(opciones_supervisor, key="-SUPERVISOR-", size=(18, 1))],
     [sg.Button("Save")],
-    [sg.Button("Check for Updates")],
+    [sg.Button("Check for Updates...")],
     [sg.ProgressBar(100, orientation='h', size=(20, 20), key='-PROGRESS-')]
 ]
 
 # Crear la ventana
-ventana = sg.Window("meter_roll_over by Ariel Camilo", layout)
+ventana = sg.Window("Roll Over EGM", layout)
 sg.theme('Light Blue 3')
 
 # Ejecutar el bucle de eventos de la ventana
@@ -112,7 +112,7 @@ while True:
                 # Guardar el archivo si hay un archivo abierto
                 if workbook:
                     workbook.save(ruta_archivo)
-                    sg.popup("Data saved. Thanks!")
+                    sg.popup("Data saved.... Thanks!")
                 else:
                     sg.popup("There are no files. Thanks!")
 
@@ -122,14 +122,10 @@ while True:
 
     # ... Código anterior ...
 
-    elif evento == "Check for Updates":
+    elif evento == "Check for Updates....":
         if Actualizador.hay_actualizacion_disponible():
-            respuesta = sg.popup_yes_no("There is an update available. Do you want to update?")
-            if respuesta == "Yes":
-                Actualizador.realizar_actualizacion()
-                sg.popup("Update completed.")
-            else:
-                sg.popup("Update canceled.")
+            Actualizador.realizar_actualizacion()
+            sg.popup("Update completed.!!!")
         else:
             sg.popup("No updates available.")
 
