@@ -17,7 +17,7 @@ class Actualizador:
 
     @staticmethod
     def realizar_actualizacion():
-        comando_establecer_rama = "git branch --set-upstream-to=origin/master master"
+        comando_establecer_rama = "git branch --set-upstream-to=origin/main main"
         comando_actualizacion = "git pull"
 
         try:
@@ -26,6 +26,7 @@ class Actualizador:
             print("Update successful.")
         except subprocess.CalledProcessError as e:
             print("Error updating:", str(e))
+
 
 # Llamar a los métodos de la clase Actualizador
 if Actualizador.hay_actualizacion_disponible():
