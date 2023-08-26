@@ -2,6 +2,7 @@ import openpyxl
 import PySimpleGUI as sg
 from datetime import datetime
 from actualizar import Actualizador
+import subprocess
 
 # Lista de rutas de archivo
 rutas_archivos = [
@@ -120,18 +121,19 @@ while True:
         if hoja:
             siguiente_fila += 1
 
-    # ... Código anterior ...
-
-    elif evento == "Check for Updates....":
-        if Actualizador.hay_actualizacion_disponible():
-            respuesta = sg.popup_yes_no("There is an update available. Do you want to update?")
-            if respuesta == "Yes":
-                Actualizador.realizar_actualizacion()
-                sg.popup("Update completed.")
+    elif evento == "Check for Updates...":
+        confirm_dialog = sg.popup_yes_no("An update is available. Do you want to update?")
+        if confirm_dialog == "Yes":
+            if Actualizador.hay_actualizacion_disponible():
+                try:
+                    Actualizador.realizar_actualizacion()
+                    sg.popup("Update successful.!!!!!!!!!!!!!!")
+                except subprocess.CalledProcessError as e:
+                    sg.popup("Error updating: check the log " + str(e))
             else:
-                sg.popup("Update canceled.")
+                sg.popup("No updates available.......")
         else:
-            sg.popup("No updates available.")
+            sg.popup("Update canceled....")
 
 # Cerrar la ventana
 ventana.close()
