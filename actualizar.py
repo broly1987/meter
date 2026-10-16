@@ -4,7 +4,7 @@ import subprocess
 class Actualizador:
     @staticmethod
     def hay_actualizacion_disponible():
-        url_actualizacion = "https://raw.githubusercontent.com/broly1987/meter/main/act.json?token=GHSAT0AAAAAACDUTGCFMCWBO4LIIH2BHTQSZEON2UQ"
+        url_actualizacion = "https://docs.google.com/spreadsheets/d/1WMeKnpYPTFF8m0vxXmQX1wkLXRMrPU4jU2Bfh5eOP3M/edit?usp=sharing"
 
         try:
             response = requests.get(url_actualizacion)
